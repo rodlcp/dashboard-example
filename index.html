@@ -1,0 +1,97 @@
+<html>
+<head>
+    <!-- jQuery and Bootstrap imports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- bootstrap-multiselect imports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">
+    
+    <!-- CryptoJS imports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
+
+    <!-- Highcharts imports -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/xrange.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <!-- Other stuff -->
+    <script src="dashboard.js"></script>
+    <script src="security.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Encrypted data -->
+    <script src="encryptedData.json"></script>
+</head>
+<body>
+    <!-- Security page -->
+    <div class="form" id="security" style="">
+        <input type="password" id="password" placeholder="Password">
+        <button onClick="data = securityCheck(); loadDashboard(data);">Send</button>
+    </div>
+    <!-- The dashboard itself -->
+    <div id="dashboard" style="display: none">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div style="padding-left: 10px; padding-right: 10px;">
+                <center><button type="button" class="btn btn-primary" onclick="updateDashboard()">Update Dashboard</button></center><br><br>
+    
+                <label for="type" style="color: white">Type of chart</label>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="type">
+                        <option value='0' selected>Yearly Temperature</option>
+                        <option value='1'>Monthly Temperature</option>
+                    </select>
+                </div>
+
+                <label for="city" style="color: white">Cities</label>
+                <select id="city" multiple="multiple" class="btn-primary"></select>
+
+                <br><br>
+                <h5 style="color: white"><center><i>Customization</i></center></h5>
+                <h7 style="color: white"><center><i>(blank for default)</i></center></h7>
+                
+                
+                <div class="input-group mb-3" style="margin-top: 10px; margin-bottom: 5px;">
+                    <input type="text" class="form-control" placeholder="Title" id="title">
+                </div>
+    
+                <div class="input-group mb-3" style="margin-bottom: 5px;">
+                    <input type="text" class="form-control" placeholder="Subtitle" id="subtitle">
+                </div>
+    
+                <div class="input-group mb-3" style="margin-bottom: 5px;">
+                    <input type="number" class="form-control" placeholder="Minimum (Y axis)" id="miny">
+                </div>
+
+                <div class="input-group mb-3" style="margin-bottom: 5px;">
+                    <input type="number" class="form-control" placeholder="Maximum (Y axis)" id="maxy">
+                </div>
+            </div>
+        </div>
+    
+        <nav class="navbar navbar-dark bg-dark" style="padding: 0;">
+            <div class="">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" style="padding: 0;" href="#"><span style="font-size:30px;cursor:pointer;margin-left:20px;" onclick="openNav()">&#9776;</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="mx-auto order-0">
+                <a class="navbar-brand mx-auto" href="#">Temperature Comparison</a>
+            </div>
+        </nav>
+        
+        <!-- Plot area -->
+        <div id="chart" style="width: 100%; height: calc(100% - 50px); position: absolute;"></div>
+    </div>
+</body>
+</html>
