@@ -1,1 +1,5 @@
-# example-dashboard
+This repository is an implementation of a concept: a iteractive dashboard accessible from anywhere without any database or hosting structure where de data is safe. For the sake of readability, the dashboard consists of 5 files, but it's easy to wrap everything in one HTML file, this way, you could easily send that file and anyone would be able to access it by just downloading and opening that one HTML file.
+
+As you can see in **encryptedData.js**, the data is encrypted using AES and the SHA256 of the key is stored in the **security.js**. That solution is not foolproof and its security relies on what is the key and how it was shared. The password is **123456** (a good example of a bad password and an unsafe way to share it).
+
+The original data presented here can be found in [kaggle](https://www.kaggle.com/selfishgene/historical-hourly-weather-data) and a simple compilation of that data can be found in "data" folder. The libraries used are: [Highcharts](https://www.highcharts.com/) for the awesome graphics, [CryptoJS](https://code.google.com/archive/p/crypto-js/) for encryption and [Bootstrap-multiselect](http://davidstutz.de/bootstrap-multiselect/) for the useful select that allows multiple options.
